@@ -1,0 +1,10 @@
+Propriedades:
+1. Reflexiva: V
+2. Irreflexiva:
+3. Simétrica:
+4. Anti-simétrica:
+5. Assimétrica:
+6. Transitiva:
+Relação de equivalência:
+Relação de ordem parcial:
+Fecho transitivo da relação: 7
