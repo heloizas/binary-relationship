@@ -4,12 +4,15 @@
 
 #define MAXTAM 100
 
-void printmatrix(int M[][MAXTAM], int n, int m) {
+void printmatrix(int M[][MAXTAM], int n, int m, int name) {
 	int i, j;
+	printf("n: %d, m: %d \n", n, m);
+	printf("size: %d \n", name);
+
 	printf("\n");
-    //i e j igual a 0 para não imprimir coluna e linha com índice 0
-	for(i=1; i<n; i++) {
-		for(j=1; j<m; j++){ 
+    //i e j igual a 1 para não imprimir coluna e linha com índice 0
+	for(i=name; i<n; i++) {
+		for(j=name; j<m; j++){ 
 			printf("%d ", M[i][j]);
 		}
 		printf("\n");
@@ -18,7 +21,7 @@ void printmatrix(int M[][MAXTAM], int n, int m) {
 }
 
 int main() {
-    int size, n, m, i, j, first, second, contadorref = 0, M[MAXTAM][MAXTAM];
+    int size, name, maxname, n, m, i, j, first, second, contadorref = 0, M[MAXTAM][MAXTAM];
     char linha[MAXTAM];
     char reflexiva = 'F';
     char irreflexiva = 'F';
@@ -32,21 +35,17 @@ int main() {
         return 0;
     }
 
-    //Pega o tamanho da matriz, primeiro dígito do arquivo
-    fscanf(file, "%d", &size);
+    //Pega o tamanho e o nome da matriz
+    fscanf(file, "%d %d", &size, &name);
+
+    //Pega o valor do último nome
+    maxname = name+size-1;
 
     //Pois o vetor começa na posição 0. Sem acrescentar o 1, últimas relações não apareceria
-    size = size + 1;
+    maxname = maxname + 1;
 
     //Preenchimento da matriz
-	n=size; m=size;
-
-    //Preenche com 0
-	// for(i=0; i<n; i++){
-	// 	for(j=0; j<m; j++) {
-	// 		M[i][j] = 0;
-	// 	}
-	// }
+	n=maxname; m=maxname;
 
     while(fgets(linha, 100, file) != NULL) {
         fscanf(file, "%i %i", &first, &second);
@@ -54,30 +53,30 @@ int main() {
         M[first][second] = 1;
     }
 
-	printmatrix(M, n, m);
+	printmatrix(M, n, m, name);
 
     //Verificação Reflexiva
-    for(i=1; i<n; i++) {
+    for(i=name; i<n; i++) {
         if(M[i][i] == 1){
             contadorref += 1;
         }
     }
-    if (contadorref == size - 1){
+    if (contadorref == size){
         reflexiva = 'V';
     }
     
-    //Verificação das relações encontradas
-    // for(i=0; i<n; i++) {
-	// 	for(j=0; j<m; j++) {
-	// 		if(M[i][j] == 1){
-    //             printf("Tem relação: %i %i\n", i, j);
-    //         }
-	// 	}
-	// }
+    // Verificação das relações encontradas
+    for(i=0; i<n; i++) {
+		for(j=0; j<m; j++) {
+			if(M[i][j] == 1){
+                printf("Tem relação: %i %i\n", i, j);
+            }
+		}
+	}
 
     //Saída
     saida = fopen("saida.txt", "w");
-    fprintf(saida, "Propriedades:\n1. Reflexiva: %c\n2. Irreflexiva:\n3. Simétrica:\n4. Anti-simétrica:\n5. Assimétrica:\n6. Transitiva:\nRelação de equivalência:\nRelação de ordem parcial:\nFecho transitivo da relação: %d", reflexiva, size);
+    fprintf(saida, "Reflexiva: %c\nIrreflexiva:\nSimétrica:\nAnti-simétrica:\nAssimétrica:\nTransitiva:\nRelação de equivalência:\nRelação de ordem parcial:\nFecho transitivo da relação: %d", reflexiva, size);
 
     fclose(file);
     fclose(saida);
