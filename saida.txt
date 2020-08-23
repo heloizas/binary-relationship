@@ -1,9 +1,9 @@
-Reflexiva: V
-Irreflexiva:
+Reflexiva: F
+Irreflexiva: F
 Simétrica:
 Anti-simétrica:
 Assimétrica:
 Transitiva:
 Relação de equivalência:
 Relação de ordem parcial:
-Fecho transitivo da relação: 6
+Fecho transitivo da relação: 3
