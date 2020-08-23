@@ -21,7 +21,7 @@ void printmatrix(int M[][MAXTAM], int n, int m, int name) {
 int main() {
     int size, name, maxname, n, m, i, j, first, second, 
         contadorref = 0, contadorirref = 0, contadorsimetrica = 0, 
-        contadorantisimetrica = 0, contadorassimetrica = 0, 
+        contadorantisimetrica = 0, 
         M[MAXTAM][MAXTAM];
     char linha[MAXTAM];
     char reflexiva = 'F';
@@ -29,6 +29,9 @@ int main() {
     char simetrica = 'F';
     char antisimetrica = 'V';
     char assimetrica = 'F';
+    char transitiva = 'F';
+    char relacaoequivalencia = 'F';
+    char relacaoordempacial = 'F';
 
     FILE *file, *saida;
 
@@ -105,7 +108,7 @@ int main() {
 			if(M[i][j] == M[j][i]) {
                 if ((i!=j) && (M[i][j] == 1)){
                     antisimetrica = 'F';
-                    printf("Para ser Anti-simétrica: (%d,%d);\n", i,j);
+                    // printf("Para ser Anti-simétrica: (%d,%d);\n", i,j);
                     // printf("M[i][j]: %d\n", M[i][j]);
                     // printf("M[j][i]: %d\n", M[j][i]);
                     // printf("i, j: %i %i\n\n", i, j);
@@ -116,17 +119,20 @@ int main() {
 	}
     //Verificação Assimétrica
     //É assimétrica se for irreflexiva e anti-simétrica
-    for(i=name; i<n; i++) {
-		for(j=name; j<m; j++) {
-			if(M[i][j] != M[j][i]) {
-                contadorassimetrica += 1;
-            }
-		}
-	}
-    if (contadorassimetrica == size*size) {
+    if ((irreflexiva == 'V') && (antisimetrica == 'V')) {
         assimetrica = 'V';
     }
 
+    //Verificação Transitiva
+    
+    //Relação de Equivalência
+    if ((reflexiva == 'V') && (simetrica == 'V') && (transitiva == 'V')) {
+        relacaoequivalencia = 'V';
+    }
+    //Relação de ordem parcial
+    if ((reflexiva == 'V') && (transitiva == 'V') && (antisimetrica == 'V')) {
+        relacaoordempacial = 'V';
+    }
     // Verificação das relações encontradas
     // for(i=0; i<n; i++) {
 	// 	for(j=0; j<m; j++) {

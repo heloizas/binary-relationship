@@ -1,6 +1,6 @@
 Reflexiva: V
 Irreflexiva: F
-Simétrica: V
+Simétrica: F
 Anti-simétrica: F
 Assimétrica: F
 Transitiva:
