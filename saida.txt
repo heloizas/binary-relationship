@@ -1,7 +1,7 @@
 Reflexiva: V
 Irreflexiva: F
-Simétrica: F
-Anti-simétrica: to-do F
+Simétrica: V
+Anti-simétrica: F
 Assimétrica: F
 Transitiva:
 Relação de equivalência:
