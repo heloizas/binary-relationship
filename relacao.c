@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include <string.h>
 
 #define MAXTAM 100
@@ -83,18 +84,15 @@ int main() {
     //Verificação Simétrica
     for(i=name; i<n; i++) {
 		for(j=name; j<m; j++) {
-			if((M[i][j] == 1) && (M[j][i] == 1)) {
+			if(M[i][j] == M[j][i]) {
                 contadorsimetrica += 1;
-                printf("M[i][j]: %d \n", M[i][j]);
-                printf("M[j][i]: %d \n", M[j][i]);
-                printf("i, j: %i %i\n", i, j);
-                printf("j, i: %i %i\n\n", i, j);
+            }
+            else if((M[j][i] == 1) && (M[i][j] == 0)) {
+                // printf("Para ser Simétrica: (%d,%d);\n", i,j);
             }
 		}
 	}
-    printf("contadorsimetrica: %d\n",contadorsimetrica);
-    printf("size: %d\n",size);
-    if (contadorsimetrica != size) {
+    if (contadorsimetrica == size*size) {
         simetrica = 'V';
     }
     
