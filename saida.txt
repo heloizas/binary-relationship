@@ -1,8 +1,8 @@
 Reflexiva: V
 Irreflexiva: F
 Simétrica: F
-Anti-simétrica:
-Assimétrica:
+Anti-simétrica: to-do F
+Assimétrica: F
 Transitiva:
 Relação de equivalência:
 Relação de ordem parcial:

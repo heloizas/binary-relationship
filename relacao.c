@@ -21,11 +21,14 @@ void printmatrix(int M[][MAXTAM], int n, int m, int name) {
 int main() {
     int size, name, maxname, n, m, i, j, first, second, 
         contadorref = 0, contadorirref = 0, contadorsimetrica = 0, 
+        contadorantisimetrica = 0, contadorassimetrica = 0, 
         M[MAXTAM][MAXTAM];
     char linha[MAXTAM];
     char reflexiva = 'F';
     char irreflexiva = 'F';
     char simetrica = 'F';
+    char antisimetrica = 'F';
+    char assimetrica = 'F';
 
     FILE *file, *saida;
 
@@ -95,7 +98,35 @@ int main() {
     if (contadorsimetrica == size*size) {
         simetrica = 'V';
     }
-    
+
+     //Verificação Anti-Simétrica
+    // for(i=name; i<n; i++) {
+	// 	for(j=name; j<m; j++) {
+	// 		if(M[i][j] == M[j][i]) {
+    //             contadorantisimetrica += 1;
+    //         }
+    //         else if((M[j][i] == 1) && (M[i][j] == 0)) {
+    //             // printf("Para ser Simétrica: (%d,%d);\n", i,j);
+    //         }
+	// 	}
+	// }
+    // if (contadorsimetrica == size*size) {
+    //     antisimetrica = 'V';
+    // }
+
+    //Verificação Assimétrica
+    //É assimétrica se for irreflexiva e anti-simétrica
+    for(i=name; i<n; i++) {
+		for(j=name; j<m; j++) {
+			if(M[i][j] != M[j][i]) {
+                contadorassimetrica += 1;
+            }
+		}
+	}
+    if (contadorassimetrica == size*size) {
+        assimetrica = 'V';
+    }
+
     // Verificação das relações encontradas
     // for(i=0; i<n; i++) {
 	// 	for(j=0; j<m; j++) {
@@ -107,7 +138,7 @@ int main() {
 
     //Saída
     saida = fopen("saida.txt", "w");
-    fprintf(saida, "Reflexiva: %c\nIrreflexiva: %c\nSimétrica: %c\nAnti-simétrica:\nAssimétrica:\nTransitiva:\nRelação de equivalência:\nRelação de ordem parcial:\nFecho transitivo da relação:", reflexiva, irreflexiva, simetrica);
+    fprintf(saida, "Reflexiva: %c\nIrreflexiva: %c\nSimétrica: %c\nAnti-simétrica: to-do %c\nAssimétrica: %c\nTransitiva:\nRelação de equivalência:\nRelação de ordem parcial:\nFecho transitivo da relação:", reflexiva, irreflexiva, simetrica, antisimetrica, assimetrica);
 
     fclose(file);
     fclose(saida);
