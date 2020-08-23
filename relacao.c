@@ -19,10 +19,12 @@ void printmatrix(int M[][MAXTAM], int n, int m, int name) {
 
 int main() {
     int size, name, maxname, n, m, i, j, first, second, 
-        contadorref = 0, contadorirref = 0, M[MAXTAM][MAXTAM];
+        contadorref = 0, contadorirref = 0, contadorsimetrica = 0, 
+        M[MAXTAM][MAXTAM];
     char linha[MAXTAM];
     char reflexiva = 'F';
     char irreflexiva = 'F';
+    char simetrica = 'F';
 
     FILE *file, *saida;
 
@@ -66,7 +68,7 @@ int main() {
     }
     
     //Verificação Irreflexiva
-     for(i=name; i<n; i++) {
+    for(i=name; i<n; i++) {
         if(M[i][i] == 0) {
             contadorirref += 1;
         }
@@ -79,6 +81,22 @@ int main() {
     }
 
     //Verificação Simétrica
+    for(i=name; i<n; i++) {
+		for(j=name; j<m; j++) {
+			if((M[i][j] == 1) && (M[j][i] == 1)) {
+                contadorsimetrica += 1;
+                printf("M[i][j]: %d \n", M[i][j]);
+                printf("M[j][i]: %d \n", M[j][i]);
+                printf("i, j: %i %i\n", i, j);
+                printf("j, i: %i %i\n\n", i, j);
+            }
+		}
+	}
+    printf("contadorsimetrica: %d\n",contadorsimetrica);
+    printf("size: %d\n",size);
+    if (contadorsimetrica != size) {
+        simetrica = 'V';
+    }
     
     // Verificação das relações encontradas
     // for(i=0; i<n; i++) {
@@ -91,7 +109,7 @@ int main() {
 
     //Saída
     saida = fopen("saida.txt", "w");
-    fprintf(saida, "Reflexiva: %c\nIrreflexiva: %c\nSimétrica:\nAnti-simétrica:\nAssimétrica:\nTransitiva:\nRelação de equivalência:\nRelação de ordem parcial:\nFecho transitivo da relação: %d", reflexiva, irreflexiva, size);
+    fprintf(saida, "Reflexiva: %c\nIrreflexiva: %c\nSimétrica: %c\nAnti-simétrica:\nAssimétrica:\nTransitiva:\nRelação de equivalência:\nRelação de ordem parcial:\nFecho transitivo da relação:", reflexiva, irreflexiva, simetrica);
 
     fclose(file);
     fclose(saida);
