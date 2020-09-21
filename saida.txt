@@ -3,7 +3,7 @@ Irreflexiva: F
 Simétrica: F
 Anti-simétrica: F
 Assimétrica: F
-Transitiva:
-Relação de equivalência:
-Relação de ordem parcial:
-Fecho transitivo da relação:
+Transitiva: to-do
+Relação de equivalência: to-do
+Relação de ordem parcial: to-do
+Fecho transitivo da relação: to-do
