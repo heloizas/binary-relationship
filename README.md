@@ -1,2 +1,2 @@
-# binary-relationship
-Practical work on binary relationship - Discrete Mathematics
+# Binary Relationship
+Practical work on binary relationship - Discrete Mathematics - UFMG
