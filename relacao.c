@@ -144,7 +144,7 @@ int main() {
 
     //Saída
     saida = fopen("saida.txt", "w");
-    fprintf(saida, "Reflexiva: %c\nIrreflexiva: %c\nSimétrica: %c\nAnti-simétrica: %c\nAssimétrica: %c\nTransitiva:\nRelação de equivalência:\nRelação de ordem parcial:\nFecho transitivo da relação:", reflexiva, irreflexiva, simetrica, antisimetrica, assimetrica);
+    fprintf(saida, "Reflexiva: %c\nIrreflexiva: %c\nSimétrica: %c\nAnti-simétrica: %c\nAssimétrica: %c\nTransitiva: to-do\nRelação de equivalência: to-do\nRelação de ordem parcial: to-do\nFecho transitivo da relação: to-do", reflexiva, irreflexiva, simetrica, antisimetrica, assimetrica);
 
     fclose(file);
     fclose(saida);
