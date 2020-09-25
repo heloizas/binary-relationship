@@ -6,58 +6,41 @@ typedef struct
 {
     int x;
     int y;
-} Tupla;
+} Tuple;
 
-void printmatrix(int Matriz[][MAXTAM], int n, int m, int name) {
+void printMatrix(int Matrix[][MAXTAM], int n, int m, int matrixName) {
 	int i, j;
 	printf("\n");
     //i e j igual a 1 para não imprimir coluna e linha com índice 0
-	for(i=name; i<n; i++) {
-		for(j=name; j<m; j++) { 
-			printf("%d ", Matriz[i][j]);
+	for(i=matrixName; i<n; i++) {
+		for(j=matrixName; j<m; j++) { 
+			printf("%d ", Matrix[i][j]);
 		}
 		printf("\n");
 	}
     printf("\n");
 }
 
-void writeFile(FILE *saida, char check, int count, Tupla values[], char text[]) {
-    fprintf(saida, "%s: %c", text, check);
+void writeFile(FILE *outputFile, char check, int count, Tuple values[], char text[]) {
+    fprintf(outputFile, "%s: %c", text, check);
     if (check == 'F'){
-        fprintf(saida, "\n");
+        fprintf(outputFile, "\n");
     }
     for (int i = 0; i < count; i++){
-        fprintf(saida, "(%d,%d); ", values[i].x, values[i].y);
+        fprintf(outputFile, "(%d,%d); ", values[i].x, values[i].y);
     }
-    fprintf(saida, "\n");
+    fprintf(outputFile, "\n");
 }
 
-// void readFile(FILE *file, int size, int name, int maxname, char linha[], int first, int second, int Matriz[][MAXTAM], int n, int m){
-//     //Entrada e validação
-//     file = fopen("relacao.txt","r");
-//     if (file == NULL) {
-//         printf("Arquivo não encontrado!\n");
-//         return;
-//     }
-//     //Pega o tamanho e o nome da matriz
-//     fscanf(file, "%d %d", &size, &name);
-//     //Pega o valor do último nome
-//     maxname = name+size-1;
-//     //Pois o vetor começa na posição 0. Sem acrescentar o 1, as últimas relações não apareceria
-//     maxname = maxname + 1;
-//     //Preenchimento da matriz
-// 	n=maxname; m=maxname;
-//     while(fgets(linha, 100, file) != NULL) {
-//         fscanf(file, "%i %i", &first, &second);
-//         Matriz[first][second] = 1;
-//     }
-// }
+void insertPairDuplicate() {
+
+}
 
 int main() {
-    int size, name, maxname, n, m, i, j, first, second, 
+    int matrixSize, matrixName, maxName, n, m, i, j, first, second, 
         contadorref = 0, contadorirref = 0, contadorsimetrica = 0, 
         contadorantisimetrica = 0, 
-        Matriz[MAXTAM][MAXTAM];
+        Matrix[MAXTAM][MAXTAM];
     char linha[MAXTAM];
     char reflexiva = 'F';
     char irreflexiva = 'F';
@@ -68,7 +51,7 @@ int main() {
     char relacaoequivalencia = 'F';
     char relacaoordempacial = 'F';
 
-    FILE *file, *saida;
+    FILE *file, *outputFile;
 
     //Entrada e validação
     file = fopen("relacao.txt","r");
@@ -78,30 +61,30 @@ int main() {
     }
 
     //Pega o tamanho e o nome da matriz
-    fscanf(file, "%d %d", &size, &name);
+    fscanf(file, "%d %d", &matrixSize, &matrixName);
 
     //Pega o valor do último nome
-    maxname = name+size-1;
+    maxName = matrixName+matrixSize-1;
 
     //Pois o vetor começa na posição 0. Sem acrescentar o 1, as últimas relações não apareceria
-    maxname = maxname + 1;
+    maxName = maxName + 1;
 
     //Preenchimento da matriz
-	n=maxname; m=maxname;
+	n=maxName; m=maxName;
 
     while(fgets(linha, 100, file) != NULL) {
         fscanf(file, "%i %i", &first, &second);
-        Matriz[first][second] = 1;
+        Matrix[first][second] = 1;
     }
 
-	// printmatrix(M, n, m, name);
-    saida = fopen("saida.txt", "w");
+	// printMatrix(M, n, m, matrixName);
+    outputFile = fopen("saida.txt", "w");
 
     //REFLEXIVA
-    Tupla faltaReflexiva[n];
+    Tuple faltaReflexiva[n];
     int faltaReflexivaContagem = 0;
-    for(i=name; i<n; i++) {
-        if(Matriz[i][i] == 1) {
+    for(i=matrixName; i<n; i++) {
+        if(Matrix[i][i] == 1) {
             contadorref += 1;
         }
         else {
@@ -110,17 +93,17 @@ int main() {
             faltaReflexivaContagem++;
         }
     }
-    if (contadorref == size) {
+    if (contadorref == matrixSize) {
         reflexiva = 'V';
     }
 
-    writeFile(saida, reflexiva, faltaReflexivaContagem, faltaReflexiva, "Reflexiva");
+    writeFile(outputFile, reflexiva, faltaReflexivaContagem, faltaReflexiva, "Reflexiva");
 
     //IRREFLEXIVA
-    Tupla faltaIrreflexiva[n];
+    Tuple faltaIrreflexiva[n];
     int faltaIrreflexivaContagem = 0;
-    for(i=name; i<n; i++) {
-        if(Matriz[i][i] == 0) {
+    for(i=matrixName; i<n; i++) {
+        if(Matrix[i][i] == 0) {
             contadorirref += 1;
         }
         else {
@@ -129,40 +112,40 @@ int main() {
             faltaIrreflexivaContagem++;
         }
     }
-    if (contadorirref == size) {
+    if (contadorirref == matrixSize) {
         irreflexiva = 'V';
     }
 
-    writeFile(saida, irreflexiva, faltaIrreflexivaContagem, faltaIrreflexiva, "Irreflexiva");
+    writeFile(outputFile, irreflexiva, faltaIrreflexivaContagem, faltaIrreflexiva, "Irreflexiva");
 
     //SIMÉTRICA
-    Tupla faltaSimetrica[n];
+    Tuple faltaSimetrica[n];
     int faltaSimetricaContagem = 0;
-    for(i=name; i<n; i++) {
-		for(j=name; j<m; j++) {
-			if(Matriz[i][j] == Matriz[j][i]) {
+    for(i=matrixName; i<n; i++) {
+		for(j=matrixName; j<m; j++) {
+			if(Matrix[i][j] == Matrix[j][i]) {
                 contadorsimetrica += 1;
             }
-            else if((Matriz[j][i] == 1) && (Matriz[i][j] == 0)) {
+            else if((Matrix[j][i] == 1) && (Matrix[i][j] == 0)) {
                 faltaSimetrica[faltaSimetricaContagem].x = i;
                 faltaSimetrica[faltaSimetricaContagem].y = j;
                 faltaSimetricaContagem++;
             }
 		}
 	}
-    if (contadorsimetrica == size*size) {
+    if (contadorsimetrica == matrixSize*matrixSize) {
         simetrica = 'V';
     }
 
-    writeFile(saida, simetrica, faltaSimetricaContagem, faltaSimetrica, "Simétrica");
+    writeFile(outputFile, simetrica, faltaSimetricaContagem, faltaSimetrica, "Simétrica");
 
     //ANTI-SIMÉTRICA
-    Tupla faltaAntiSimetrica[n];
+    Tuple faltaAntiSimetrica[n];
     int faltaAntiSimetricaContagem = 0;
-    for(i=name; i<n; i++) {
-		for(j=name; j<m; j++) {
-			if(Matriz[i][j] == Matriz[j][i]) {
-                if ((i!=j) && (Matriz[i][j] == 1)){
+    for(i=matrixName; i<n; i++) {
+		for(j=matrixName; j<m; j++) {
+			if(Matrix[i][j] == Matrix[j][i]) {
+                if ((i!=j) && (Matrix[i][j] == 1)){
                     antisimetrica = 'F';
                     faltaAntiSimetrica[faltaAntiSimetricaContagem].x = i;
                     faltaAntiSimetrica[faltaAntiSimetricaContagem].y = j;
@@ -172,7 +155,7 @@ int main() {
 		}
 	}
     
-    writeFile(saida, antisimetrica, faltaAntiSimetricaContagem, faltaAntiSimetrica, "Anti-simétrica");
+    writeFile(outputFile, antisimetrica, faltaAntiSimetricaContagem, faltaAntiSimetrica, "Anti-simétrica");
 
     //ASSIMÉTRICA
     //É assimétrica se for irreflexiva e anti-simétrica
@@ -180,16 +163,16 @@ int main() {
         assimetrica = 'V';
     }
 
-    fprintf(saida, "Assimétrica: %c\n", assimetrica);
-    
+    fprintf(outputFile, "Assimétrica: %c\n", assimetrica);
+
     //TRANSITIVA
-    Tupla faltaTransitiva[n];
+    Tuple faltaTransitiva[n];
     int faltaTransitivaContagem = 0;
-    for (int i=name; i<n; i++){
-        for (int j=name; j<n; j++){
-            if (Matriz[i][j]){
-                for (int z=name; z<n; z++){
-                    if (Matriz[j][z] && !Matriz[i][z]) {
+    for (int i=matrixName; i<n; i++){
+        for (int j=matrixName; j<n; j++){
+            if (Matrix[i][j]){
+                for (int z=matrixName; z<n; z++){
+                    if (Matrix[j][z] && !Matrix[i][z]) {
                         transitiva = 'F';
                         faltaTransitiva[faltaTransitivaContagem].x = i;
                         faltaTransitiva[faltaTransitivaContagem].y = z;
@@ -200,23 +183,19 @@ int main() {
         }
     }
 
-    writeFile(saida, transitiva, faltaTransitivaContagem, faltaTransitiva, "Transitiva");
+    writeFile(outputFile, transitiva, faltaTransitivaContagem, faltaTransitiva, "Transitiva");
 
     //FECHO TRANSITIVO
-    Tupla fechoTransitivo[n];
+    Tuple fechoTransitivo[n];
     int fechoTransitivoContagem = 0;
-    for(i=name; i<n; i++) {
-		for(j=name; j<m; j++) {
-			if(Matriz[i][j] == 1){
+    for(i=matrixName; i<n; i++) {
+		for(j=matrixName; j<m; j++) {
+			if(Matrix[i][j] == 1){
                 fechoTransitivo[fechoTransitivoContagem].x = i;
                 fechoTransitivo[fechoTransitivoContagem].y = j;
                 fechoTransitivoContagem++;
             }
 		}
-    }
-
-    for (int i = 0; i < faltaTransitivaContagem; i++){
-        printf("(%d,%d); ", faltaTransitiva[i].x, faltaTransitiva[i].y);
     }
 
     //EQUIVALÊNCIA
@@ -230,16 +209,16 @@ int main() {
     }
 
     //Saída
-    fprintf(saida, "Relação de equivalência: %c\n", relacaoequivalencia);
-    fprintf(saida, "Relação de ordem parcial: %c", relacaoordempacial);
-    fprintf(saida, "\nFecho transitivo da relação: ");
+    fprintf(outputFile, "Relação de equivalência: %c\n", relacaoequivalencia);
+    fprintf(outputFile, "Relação de ordem parcial: %c", relacaoordempacial);
+    fprintf(outputFile, "\nFecho transitivo da relação: ");
     for (int i = 0; i < fechoTransitivoContagem; i++){
-        fprintf(saida, "(%d,%d); ", fechoTransitivo[i].x, fechoTransitivo[i].y);
+        fprintf(outputFile, "(%d,%d); ", fechoTransitivo[i].x, fechoTransitivo[i].y);
     }
     for (int i = 0; i < faltaTransitivaContagem; i++){
-        fprintf(saida, "(%d,%d); ", faltaTransitiva[i].x, faltaTransitiva[i].y);
+        fprintf(outputFile, "(%d,%d); ", faltaTransitiva[i].x, faltaTransitiva[i].y);
     }
-    fclose(saida);
+    fclose(outputFile);
     fclose(file);
     return 0;
 }
