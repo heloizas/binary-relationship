@@ -227,8 +227,8 @@ int main() {
     for (int i = 0; i < fechoTransitivoContagem; i++){
         fprintf(outputFile, "(%d,%d); ", fechoTransitivo[i].x, fechoTransitivo[i].y);
     }
-    for (int i = 0; i < faltaTransitivaContagem; i++){
-        fprintf(outputFile, "(%d,%d); ", faltaTransitiva[i].x, faltaTransitiva[i].y);
+    for (int i = 0; i < faltaTransitivaSemDuplicidadeContagem; i++){
+        fprintf(outputFile, "(%d,%d); ", faltaTransitivaSemDuplicidade[i].x, faltaTransitivaSemDuplicidade[i].y);
     }
     fclose(outputFile);
     fclose(file);
