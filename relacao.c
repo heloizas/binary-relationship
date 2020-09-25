@@ -142,6 +142,19 @@ int main() {
         assimetrica = 'V';
     }
 
+    //Fecho transitivo da relação
+    Tupla fechoTransitivo[n];
+    int fechoTransitivoContagem = 0;
+    for(i=name; i<n; i++) {
+		for(j=name; j<m; j++) {
+			if(Matriz[i][j] == 1){
+                fechoTransitivo[fechoTransitivoContagem].x = i;
+                fechoTransitivo[fechoTransitivoContagem].y = j;
+                fechoTransitivoContagem++;
+            }
+		}
+    }
+
     //Verificação Transitiva
     Tupla faltaTransitiva[n];
     int faltaTransitivaContagem = 0;
@@ -153,12 +166,14 @@ int main() {
                     faltaTransitiva[faltaTransitivaContagem].x = i;
                     faltaTransitiva[faltaTransitivaContagem].y = k;
                     faltaTransitivaContagem++;
-                    printf("Para ser Transitiva: (%d,%d);\n", j,i);
+                    fechoTransitivo[fechoTransitivoContagem].x = i;
+                    fechoTransitivo[fechoTransitivoContagem].y = k;
+                    fechoTransitivoContagem++;
                 }
             }
         }
     }
-    
+
     //Relação de Equivalência
     if ((reflexiva == 'V') && (simetrica == 'V') && (transitiva == 'V')) {
         relacaoequivalencia = 'V';
@@ -169,41 +184,60 @@ int main() {
         relacaoordempacial = 'V';
     }
 
-    // Verificação das relações encontradas
-    // for(i=0; i<n; i++) {
-	// 	for(j=0; j<m; j++) {
-	// 		if(Matriz[i][j] == 1){
-    //             printf("Tem relação: %i %i\n", i, j);
-    //         }
-	// 	}
-	// }
-
     //Saída
     saida = fopen("saida.txt", "w");
-    fprintf(saida, "Reflexiva: %c \n", reflexiva);
+    
+    //Printa Reflexiva
+    fprintf(saida, "Reflexiva: %c", reflexiva);
+    if (reflexiva == 'F'){
+        fprintf(saida, "\n");
+    }
     for (int i = 0; i < faltaReflexivaContagem; i++){
         fprintf(saida, "(%d,%d); ", faltaReflexiva[i].x, faltaReflexiva[i].y);
     }
-    fprintf(saida, "\nIrreflexiva: %c\n", irreflexiva);
+    //Printa Irreflexiva
+    fprintf(saida, "\nIrreflexiva: %c", irreflexiva);
+    if (irreflexiva == 'F'){
+        fprintf(saida, "\n");
+    }
     for (int i = 0; i < faltaIrreflexivaContagem; i++){
         fprintf(saida, "(%d,%d); ", faltaIrreflexiva[i].x, faltaIrreflexiva[i].y);
     }
-    fprintf(saida, "\nSimétrica: %c\n", simetrica);
+    //Printa Simétrica
+    fprintf(saida, "\nSimétrica: %c", simetrica);
+    if (simetrica == 'F'){
+        fprintf(saida, "\n");
+    }
     for (int i = 0; i < faltaSimetricaContagem; i++){
         fprintf(saida, "(%d,%d); ", faltaSimetrica[i].x, faltaSimetrica[i].y);
     }
-    fprintf(saida, "\nAnti-simétrica: %c\n", antisimetrica);
+    //Printa Anti-simétrica
+    fprintf(saida, "\nAnti-simétrica: %c", antisimetrica);
+    if (antisimetrica == 'F'){
+        fprintf(saida, "\n");
+    }
     for (int i = 0; i < faltaAntiSimetricaContagem; i++){
         fprintf(saida, "(%d,%d); ", faltaAntiSimetrica[i].x, faltaAntiSimetrica[i].y);
     }
+    //Printa Assimétrica
     fprintf(saida, "\nAssimétrica: %c", assimetrica);
-    fprintf(saida, "\nTransitiva: %c\n", transitiva);
+    //Printa Transitiva
+    fprintf(saida, "\nTransitiva: %c", transitiva);
+    if (transitiva == 'F'){
+        fprintf(saida, "\n");
+    }
     for (int i = 0; i < faltaTransitivaContagem; i++){
         fprintf(saida, "(%d,%d); ", faltaTransitiva[i].x, faltaTransitiva[i].y);
     }
+    //Printa Relação de equivalência
     fprintf(saida, "\nRelação de equivalência: %c", relacaoequivalencia);
+    //Printa Relação de ordem parcial
     fprintf(saida, "\nRelação de ordem parcial: %c", relacaoordempacial);
-    fprintf(saida, "\nFecho transitivo da relação: to-do");
+    //Printa Fecho transitivo da relação
+    fprintf(saida, "\nFecho transitivo da relação: ");
+    for (int i = 0; i < fechoTransitivoContagem; i++){
+        fprintf(saida, "(%d,%d); ", fechoTransitivo[i].x, fechoTransitivo[i].y);
+    }
     
     fclose(file);
     fclose(saida);
