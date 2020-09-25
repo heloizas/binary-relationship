@@ -1,7 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <string.h>
 
 #define MAXTAM 100
 
@@ -135,12 +132,48 @@ int main() {
             }
 		}
 	}
-
-    //Verificação Assimétrica
-    //É assimétrica se for irreflexiva e anti-simétrica
-    if ((irreflexiva == 'V') && (antisimetrica == 'V')) {
-        assimetrica = 'V';
+    
+    //Verificação Transitiva
+    Tupla faltaTransitiva[n];
+    int faltaTransitivaContagem = 0;
+    for (int i=name; i<n; i++){
+        for (int j=name; j<m; j++){
+            for (int k=name; k<n; k++){
+                if (Matriz[i][j] && Matriz[j][k] && !Matriz[i][k]){
+                    // for (int i = 0; i < n ; i++){
+                    //     transitiva = 'F';
+                    //     if (faltaTransitiva[i].x != i){
+                    //         faltaTransitiva[faltaTransitivaContagem].x = i;
+                    //     }
+                    //     if (faltaTransitiva[i].y != k){
+                    //         faltaTransitiva[faltaTransitivaContagem].y = k;
+                    //     }
+                    // }
+                    transitiva = 'F';
+                    faltaTransitiva[faltaTransitivaContagem].x = i;
+                    faltaTransitiva[faltaTransitivaContagem].y = k;
+                    faltaTransitivaContagem++;
+                }
+            }
+        }
     }
+
+    //Transitiva sem duplicidade
+    // Tupla faltaTransitivaSemDuplicidade[faltaTransitivaContagem];
+    // int faltaTransitivaSemDuplicidadeContagem = 0;
+    // int insere = 1;
+    // for (int i = 0; i < faltaTransitivaContagem; i++){
+    //     for (int j = 0; j < faltaTransitivaSemDuplicidadeContagem; j++){
+    //         if (faltaTransitiva[i].x == faltaTransitivaSemDuplicidade[j].x && faltaTransitiva[i].y == faltaTransitivaSemDuplicidade[j].y){
+    //             insere = 0;
+    //         }
+    //     }
+    //     if (insere){
+    //         faltaTransitivaSemDuplicidade[faltaTransitivaSemDuplicidadeContagem] = faltaTransitiva[i];
+    //         faltaTransitivaSemDuplicidadeContagem++;
+    //     }
+    //     insere = 1;
+    // }
 
     //Fecho transitivo da relação
     Tupla fechoTransitivo[n];
@@ -155,23 +188,10 @@ int main() {
 		}
     }
 
-    //Verificação Transitiva
-    Tupla faltaTransitiva[n];
-    int faltaTransitivaContagem = 0;
-    for (int i=name; i < n; i++){
-        for (int j=name; j < m; j++){
-            for (int k=name; k < n; k++){
-                if (Matriz[i][j] && Matriz[j][k] && !Matriz[i][k]){
-                    transitiva = 'F';
-                    faltaTransitiva[faltaTransitivaContagem].x = i;
-                    faltaTransitiva[faltaTransitivaContagem].y = k;
-                    faltaTransitivaContagem++;
-                    fechoTransitivo[fechoTransitivoContagem].x = i;
-                    fechoTransitivo[fechoTransitivoContagem].y = k;
-                    fechoTransitivoContagem++;
-                }
-            }
-        }
+    //Verificação Assimétrica
+    //É assimétrica se for irreflexiva e anti-simétrica
+    if ((irreflexiva == 'V') && (antisimetrica == 'V')) {
+        assimetrica = 'V';
     }
 
     //Relação de Equivalência
@@ -229,6 +249,9 @@ int main() {
     for (int i = 0; i < faltaTransitivaContagem; i++){
         fprintf(saida, "(%d,%d); ", faltaTransitiva[i].x, faltaTransitiva[i].y);
     }
+    // for (int i = 0; i < faltaTransitivaSemDuplicidadeContagem; i++){
+    //     fprintf(saida, "(%d,%d); ", faltaTransitivaSemDuplicidade[i].x, faltaTransitivaSemDuplicidade[i].y);
+    // }
     //Printa Relação de equivalência
     fprintf(saida, "\nRelação de equivalência: %c", relacaoequivalencia);
     //Printa Relação de ordem parcial
@@ -238,7 +261,10 @@ int main() {
     for (int i = 0; i < fechoTransitivoContagem; i++){
         fprintf(saida, "(%d,%d); ", fechoTransitivo[i].x, fechoTransitivo[i].y);
     }
-    
+    for (int i = 0; i < faltaTransitivaContagem; i++){
+        fprintf(saida, "(%d,%d); ", faltaTransitiva[i].x, faltaTransitiva[i].y);
+    }
+
     fclose(file);
     fclose(saida);
 

@@ -1,11 +1,13 @@
 Reflexiva: V
 Irreflexiva: F
-(3,3); (4,4); (5,5); (6,6); (7,7); (8,8); 
-Simétrica: V
+(20,20); (21,21); (22,22); 
+Simétrica: F
+(21,20); 
 Anti-simétrica: F
-(6,6); (6,8); (7,3); (7,5); (7,7); (8,4); (8,6); (8,8); (7,3); (7,5); (8,4); (8,6); 
+(20,22); (22,20); 
 Assimétrica: F
-Transitiva: V
-Relação de equivalência: V
+Transitiva: F
+(22,21); 
+Relação de equivalência: F
 Relação de ordem parcial: F
-Fecho transitivo da relação: (3,3); (3,5); (3,7); (4,4); (4,6); (4,8); (5,3); (5,5); (5,7); (6,4); (6,6); (6,8); (7,3); (7,5); (7,7); (8,4); (8,6); (8,8); 
+Fecho transitivo da relação: (20,20); (20,21); (20,22); (21,21); (22,20); (22,22); (22,21); 
