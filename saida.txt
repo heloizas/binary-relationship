@@ -1,9 +1,14 @@
-Reflexiva: V
+Reflexiva: V 
+
 Irreflexiva: F
+(3,3); (4,4); (5,5); (6,6); (7,7); (8,8); 
 Simétrica: F
-Anti-simétrica: F
+(3,5); (4,6); (5,7); (6,8); (7,3); (8,4); 
+Anti-simétrica: V
+
 Assimétrica: F
-Transitiva: to-do
-Relação de equivalência: to-do
-Relação de ordem parcial: to-do
+Transitiva: F
+(3,5); (4,6); (5,7); (6,8); (7,3); (8,4); 
+Relação de equivalência: F
+Relação de ordem parcial: F
 Fecho transitivo da relação: to-do
