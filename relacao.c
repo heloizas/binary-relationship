@@ -21,6 +21,17 @@ void printmatrix(int Matriz[][MAXTAM], int n, int m, int name) {
     printf("\n");
 }
 
+void writeFile(FILE *saida, char check, int count, Tupla values[], char text[]) {
+    fprintf(saida, "%s: %c", text, check);
+    if (check == 'F'){
+        fprintf(saida, "\n");
+    }
+    for (int i = 0; i < count; i++){
+        fprintf(saida, "(%d,%d); ", values[i].x, values[i].y);
+    }
+    fprintf(saida, "\n");
+}
+
 int main() {
     int size, name, maxname, n, m, i, j, first, second, 
         contadorref = 0, contadorirref = 0, contadorsimetrica = 0, 
@@ -36,7 +47,7 @@ int main() {
     char relacaoequivalencia = 'F';
     char relacaoordempacial = 'F';
 
-    FILE *file, *saida;
+    FILE *file;
 
     //Entrada e validação
     file = fopen("relacao.txt","r");
@@ -216,58 +227,16 @@ int main() {
     }
 
     //Saída
+    FILE *saida;
     saida = fopen("saida.txt", "w");
-    //Printa Reflexiva
-    fprintf(saida, "Reflexiva: %c", reflexiva);
-    if (reflexiva == 'F'){
-        fprintf(saida, "\n");
-    }
-    for (int i = 0; i < faltaReflexivaContagem; i++){
-        fprintf(saida, "(%d,%d); ", faltaReflexiva[i].x, faltaReflexiva[i].y);
-    }
-    //Printa Irreflexiva
-    fprintf(saida, "\nIrreflexiva: %c", irreflexiva);
-    if (irreflexiva == 'F'){
-        fprintf(saida, "\n");
-    }
-    for (int i = 0; i < faltaIrreflexivaContagem; i++){
-        fprintf(saida, "(%d,%d); ", faltaIrreflexiva[i].x, faltaIrreflexiva[i].y);
-    }
-    //Printa Simétrica
-    fprintf(saida, "\nSimétrica: %c", simetrica);
-    if (simetrica == 'F'){
-        fprintf(saida, "\n");
-    }
-    for (int i = 0; i < faltaSimetricaContagem; i++){
-        fprintf(saida, "(%d,%d); ", faltaSimetrica[i].x, faltaSimetrica[i].y);
-    }
-    //Printa Anti-simétrica
-    fprintf(saida, "\nAnti-simétrica: %c", antisimetrica);
-    if (antisimetrica == 'F'){
-        fprintf(saida, "\n");
-    }
-    for (int i = 0; i < faltaAntiSimetricaContagem; i++){
-        fprintf(saida, "(%d,%d); ", faltaAntiSimetrica[i].x, faltaAntiSimetrica[i].y);
-    }
-    //Printa Assimétrica
-    fprintf(saida, "\nAssimétrica: %c", assimetrica);
-    //Printa Transitiva
-    fprintf(saida, "\nTransitiva: %c", transitiva);
-    if (transitiva == 'F'){
-        fprintf(saida, "\n");
-    }
-    for (int i = 0; i < faltaTransitivaContagem; i++){
-        fprintf(saida, "(%d,%d); ", faltaTransitiva[i].x, faltaTransitiva[i].y);
-    }
-    // fprintf(saida, "\n");
-    // for (int i = 0; i < faltaTransitivaSemDuplicidadeContagem; i++){
-    //     fprintf(saida, "(%d,%d); ", faltaTransitivaSemDuplicidade[i].x, faltaTransitivaSemDuplicidade[i].y);
-    // }
-    //Printa Relação de equivalência
-    fprintf(saida, "\nRelação de equivalência: %c", relacaoequivalencia);
-    //Printa Relação de ordem parcial
-    fprintf(saida, "\nRelação de ordem parcial: %c", relacaoordempacial);
-    //Printa Fecho transitivo da relação
+    writeFile(saida, reflexiva, faltaReflexivaContagem, faltaReflexiva, "Reflexiva");
+    writeFile(saida, irreflexiva, faltaIrreflexivaContagem, faltaIrreflexiva, "Irreflexiva");
+    writeFile(saida, simetrica, faltaSimetricaContagem, faltaSimetrica, "Simétrica");
+    writeFile(saida, antisimetrica, faltaAntiSimetricaContagem, faltaAntiSimetrica, "Anti-simétrica");
+    fprintf(saida, "Assimétrica: %c\n", assimetrica);
+    writeFile(saida, transitiva, faltaTransitivaContagem, faltaTransitiva, "Transitiva");
+    fprintf(saida, "Relação de equivalência: %c\n", relacaoequivalencia);
+    fprintf(saida, "Relação de ordem parcial: %c", relacaoordempacial);
     fprintf(saida, "\nFecho transitivo da relação: ");
     for (int i = 0; i < fechoTransitivoContagem; i++){
         fprintf(saida, "(%d,%d); ", fechoTransitivo[i].x, fechoTransitivo[i].y);
@@ -275,9 +244,7 @@ int main() {
     for (int i = 0; i < faltaTransitivaContagem; i++){
         fprintf(saida, "(%d,%d); ", faltaTransitiva[i].x, faltaTransitiva[i].y);
     }
-
-    fclose(file);
     fclose(saida);
-
+    fclose(file);
     return 0;
 }
