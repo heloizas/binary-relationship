@@ -2,8 +2,7 @@
 
 #define MAXTAM 100
 
-typedef struct
-{
+typedef struct {
     int x;
     int y;
 } Tuple;
@@ -26,14 +25,10 @@ void writeFile(FILE *outputFile, char check, int count, Tuple values[], char tex
     if (check == 'F'){
         fprintf(outputFile, "\n");
     }
-    for (int i = 0; i < count; i++){
+    for (int i=0; i<count; i++){
         fprintf(outputFile, "(%d,%d); ", values[i].x, values[i].y);
     }
     fprintf(outputFile, "\n");
-}
-
-void insertPairDuplicate() {
-
 }
 
 int main() {
@@ -177,13 +172,30 @@ int main() {
                         faltaTransitiva[faltaTransitivaContagem].x = i;
                         faltaTransitiva[faltaTransitivaContagem].y = z;
                         faltaTransitivaContagem++;
-                    }
+                   }
                 }
             }
         }
     }
 
-    writeFile(outputFile, transitiva, faltaTransitivaContagem, faltaTransitiva, "Transitiva");
+    // TRANSITIVA SEM DUPLICIDADE
+    Tuple faltaTransitivaSemDuplicidade[faltaTransitivaContagem];
+    int faltaTransitivaSemDuplicidadeContagem = 0;
+    int insere = 1;
+    for (int i = 0; i < faltaTransitivaContagem; i++){
+        for (int j = 0; j < faltaTransitivaSemDuplicidadeContagem; j++){
+            if (faltaTransitiva[i].x == faltaTransitivaSemDuplicidade[j].x && faltaTransitiva[i].y == faltaTransitivaSemDuplicidade[j].y){
+                insere = 0;
+            }
+        }
+        if (insere){
+            faltaTransitivaSemDuplicidade[faltaTransitivaSemDuplicidadeContagem] = faltaTransitiva[i];
+            faltaTransitivaSemDuplicidadeContagem++;
+        }
+        insere = 1;
+    }
+
+    writeFile(outputFile, transitiva, faltaTransitivaSemDuplicidadeContagem, faltaTransitivaSemDuplicidade, "Transitiva");
 
     //FECHO TRANSITIVO
     Tuple fechoTransitivo[n];
