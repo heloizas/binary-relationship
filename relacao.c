@@ -64,7 +64,7 @@ int main() {
 
 	// printmatrix(M, n, m, name);
 
-    //Verificação Reflexiva
+    //REFLEXIVA
     Tupla faltaReflexiva[n];
     int faltaReflexivaContagem = 0;
     for(i=name; i<n; i++) {
@@ -81,7 +81,7 @@ int main() {
         reflexiva = 'V';
     }
 
-    //Verificação Irreflexiva
+    //IRREFLEXIVA
     Tupla faltaIrreflexiva[n];
     int faltaIrreflexivaContagem = 0;
     for(i=name; i<n; i++) {
@@ -98,7 +98,7 @@ int main() {
         irreflexiva = 'V';
     }
 
-    //Verificação Simétrica
+    //SIMÉTRICA
     Tupla faltaSimetrica[n];
     int faltaSimetricaContagem = 0;
     for(i=name; i<n; i++) {
@@ -117,7 +117,7 @@ int main() {
         simetrica = 'V';
     }
 
-    //Verificação Anti-Simétrica
+    //ANTI-SIMÉTRICA
     Tupla faltaAntiSimetrica[n];
     int faltaAntiSimetricaContagem = 0;
     for(i=name; i<n; i++) {
@@ -133,22 +133,13 @@ int main() {
 		}
 	}
     
-    //Verificação Transitiva
+    //TRANSITIVA
     Tupla faltaTransitiva[n];
     int faltaTransitivaContagem = 0;
     for (int i=name; i<n; i++){
-        for (int j=name; j<m; j++){
+        for (int j=name; j<n; j++){
             for (int k=name; k<n; k++){
                 if (Matriz[i][j] && Matriz[j][k] && !Matriz[i][k]){
-                    // for (int i = 0; i < n ; i++){
-                    //     transitiva = 'F';
-                    //     if (faltaTransitiva[i].x != i){
-                    //         faltaTransitiva[faltaTransitivaContagem].x = i;
-                    //     }
-                    //     if (faltaTransitiva[i].y != k){
-                    //         faltaTransitiva[faltaTransitivaContagem].y = k;
-                    //     }
-                    // }
                     transitiva = 'F';
                     faltaTransitiva[faltaTransitivaContagem].x = i;
                     faltaTransitiva[faltaTransitivaContagem].y = k;
@@ -158,12 +149,12 @@ int main() {
         }
     }
 
-    //Transitiva sem duplicidade
+    // TRANSITIVA (DUPLICIDADE)
     // Tupla faltaTransitivaSemDuplicidade[faltaTransitivaContagem];
     // int faltaTransitivaSemDuplicidadeContagem = 0;
     // int insere = 1;
-    // for (int i = 0; i < faltaTransitivaContagem; i++){
-    //     for (int j = 0; j < faltaTransitivaSemDuplicidadeContagem; j++){
+    // for (int i=name; i < faltaTransitivaContagem; i++){
+    //     for (int j=name; j < faltaTransitivaSemDuplicidadeContagem; j++){
     //         if (faltaTransitiva[i].x == faltaTransitivaSemDuplicidade[j].x && faltaTransitiva[i].y == faltaTransitivaSemDuplicidade[j].y){
     //             insere = 0;
     //         }
@@ -175,7 +166,27 @@ int main() {
     //     insere = 1;
     // }
 
-    //Fecho transitivo da relação
+    //TRANSITIVA HEL
+    // Tupla faltaTransitiva[n];
+    // int faltaTransitivaContagem = 0;
+    // for (int i=name; i<n; i++){
+    //     for (int j=name; j<n; j++){
+    //         for (int z=name; z<n; z++){
+    //             if ((Matriz[i][j] == 1) && (Matriz[j][z] == 1)){
+    //                 if ((Matriz[i][z]) == 1){
+    //                     transitiva = 'V';
+    //                 } else {
+    //                 transitiva = 'F';
+    //                 faltaTransitiva[faltaTransitivaContagem].x = j;
+    //                 faltaTransitiva[faltaTransitivaContagem].y = z;
+    //                 faltaTransitivaContagem++;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+
+    //FECHO TRANSITIVO
     Tupla fechoTransitivo[n];
     int fechoTransitivoContagem = 0;
     for(i=name; i<n; i++) {
@@ -188,25 +199,24 @@ int main() {
 		}
     }
 
-    //Verificação Assimétrica
+    //ASSIMÉTRICA
     //É assimétrica se for irreflexiva e anti-simétrica
     if ((irreflexiva == 'V') && (antisimetrica == 'V')) {
         assimetrica = 'V';
     }
 
-    //Relação de Equivalência
+    //EQUIVALÊNCIA
     if ((reflexiva == 'V') && (simetrica == 'V') && (transitiva == 'V')) {
         relacaoequivalencia = 'V';
     }
 
-    //Relação de ordem parcial
+    //ORDEM PARCIAL
     if ((reflexiva == 'V') && (transitiva == 'V') && (antisimetrica == 'V')) {
         relacaoordempacial = 'V';
     }
 
     //Saída
     saida = fopen("saida.txt", "w");
-    
     //Printa Reflexiva
     fprintf(saida, "Reflexiva: %c", reflexiva);
     if (reflexiva == 'F'){
@@ -249,6 +259,7 @@ int main() {
     for (int i = 0; i < faltaTransitivaContagem; i++){
         fprintf(saida, "(%d,%d); ", faltaTransitiva[i].x, faltaTransitiva[i].y);
     }
+    // fprintf(saida, "\n");
     // for (int i = 0; i < faltaTransitivaSemDuplicidadeContagem; i++){
     //     fprintf(saida, "(%d,%d); ", faltaTransitivaSemDuplicidade[i].x, faltaTransitivaSemDuplicidade[i].y);
     // }
