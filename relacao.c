@@ -5,6 +5,12 @@
 
 #define MAXTAM 100
 
+typedef struct
+{
+    int x;
+    int y;
+} Tupla;
+
 void printmatrix(int M[][MAXTAM], int n, int m, int name) {
 	int i, j;
 	printf("\n");
@@ -48,7 +54,7 @@ int main() {
     //Pega o valor do último nome
     maxname = name+size-1;
 
-    //Pois o vetor começa na posição 0. Sem acrescentar o 1, últimas relações não apareceria
+    //Pois o vetor começa na posição 0. Sem acrescentar o 1, as últimas relações não apareceria
     maxname = maxname + 1;
 
     //Preenchimento da matriz
@@ -59,28 +65,36 @@ int main() {
         M[first][second] = 1;
     }
 
-	printmatrix(M, n, m, name);
+	// printmatrix(M, n, m, name);
 
     //Verificação Reflexiva
+    Tupla faltaReflexiva[n];
+    int faltaReflexivaContagem = 0;
     for(i=name; i<n; i++) {
         if(M[i][i] == 1) {
             contadorref += 1;
         }
         else {
-            // printf("Para ser reflexiva: (%d,%d);\n", i,i);
+            faltaReflexiva[faltaReflexivaContagem].x = i;
+            faltaReflexiva[faltaReflexivaContagem].y = i;
+            faltaReflexivaContagem++;
         }
     }
     if (contadorref == size) {
         reflexiva = 'V';
     }
-    
+
     //Verificação Irreflexiva
+    Tupla faltaIrreflexiva[n];
+    int faltaIrreflexivaContagem = 0;
     for(i=name; i<n; i++) {
         if(M[i][i] == 0) {
             contadorirref += 1;
         }
         else {
-            // printf("Para ser Irreflexiva: (%d,%d);\n", i,i);
+            faltaIrreflexiva[faltaIrreflexivaContagem].x = i;
+            faltaIrreflexiva[faltaIrreflexivaContagem].y = i;
+            faltaIrreflexivaContagem++;
         }
     }
     if (contadorirref == size) {
@@ -88,13 +102,17 @@ int main() {
     }
 
     //Verificação Simétrica
+    Tupla faltaSimetrica[n];
+    int faltaSimetricaContagem = 0;
     for(i=name; i<n; i++) {
 		for(j=name; j<m; j++) {
 			if(M[i][j] == M[j][i]) {
                 contadorsimetrica += 1;
             }
             else if((M[j][i] == 1) && (M[i][j] == 0)) {
-                // printf("Para ser Simétrica: (%d,%d);\n", i,j);
+                faltaSimetrica[faltaSimetricaContagem].x = i;
+                faltaSimetrica[faltaSimetricaContagem].y = i;
+                faltaSimetricaContagem++;
             }
 		}
 	}
@@ -103,12 +121,16 @@ int main() {
     }
 
     //Verificação Anti-Simétrica
+    Tupla faltaAntiSimetrica[n];
+    int faltaAntiSimetricaContagem = 0;
     for(i=name; i<n; i++) {
 		for(j=name; j<m; j++) {
 			if(M[i][j] == M[j][i]) {
                 if ((i!=j) && (M[i][j] == 1)){
                     antisimetrica = 'F';
-                    // printf("Para ser Anti-simétrica: (%d,%d);\n", i,j);
+                    faltaAntiSimetrica[faltaAntiSimetricaContagem].x = i;
+                    faltaAntiSimetrica[faltaAntiSimetricaContagem].y = j;
+                    faltaAntiSimetricaContagem++;
                     // printf("M[i][j]: %d\n", M[i][j]);
                     // printf("M[j][i]: %d\n", M[j][i]);
                     // printf("i, j: %i %i\n\n", i, j);
@@ -144,9 +166,30 @@ int main() {
 
     //Saída
     saida = fopen("saida.txt", "w");
-    fprintf(saida, "Reflexiva: %c\nIrreflexiva: %c\nSimétrica: %c\nAnti-simétrica: %c\nAssimétrica: %c\nTransitiva: to-do\nRelação de equivalência: to-do\nRelação de ordem parcial: to-do\nFecho transitivo da relação: to-do", reflexiva, irreflexiva, simetrica, antisimetrica, assimetrica);
-
+    fprintf(saida, "Reflexiva: %c \n", reflexiva);
+    for (int i = 0; i < faltaReflexivaContagem; i++){
+        fprintf(saida, "(%d,%d); ", faltaReflexiva[i].x, faltaReflexiva[i].y);
+    }
+    fprintf(saida, "\nIrreflexiva: %c\n", irreflexiva);
+    for (int i = 0; i < faltaIrreflexivaContagem; i++){
+        fprintf(saida, "(%d,%d); ", faltaIrreflexiva[i].x, faltaIrreflexiva[i].y);
+    }
+    fprintf(saida, "\nSimétrica: %c\n", simetrica);
+    for (int i = 0; i < faltaSimetricaContagem; i++){
+        fprintf(saida, "(%d,%d); ", faltaSimetrica[i].x, faltaSimetrica[i].y);
+    }
+    fprintf(saida, "\nAnti-simétrica: %c\n", antisimetrica);
+    for (int i = 0; i < faltaAntiSimetricaContagem; i++){
+        fprintf(saida, "(%d,%d); ", faltaAntiSimetrica[i].x, faltaAntiSimetrica[i].y);
+    }
+    fprintf(saida, "\nAssimétrica: %c\n", assimetrica);
+    fprintf(saida, "\nTransitiva: to-do\n");
+    fprintf(saida, "\nRelação de equivalência: to-do");
+    fprintf(saida, "\nRelação de ordem parcial: to-do");
+    fprintf(saida, "\nFecho transitivo da relação: to-do");
+    
     fclose(file);
     fclose(saida);
+
     return 0;
 }
