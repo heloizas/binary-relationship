@@ -1,0 +1,22 @@
+INSTRUÇÕES PARA EXECUÇÃO
+
+Para o desenvolvimento desse TP, o código de solução foi desenvolvido na linguagem C.
+O compilador utilizado foi o gcc.
+
+A entrada deve ser introduzida no arquivo entrada.txt
+
+Exemplo de entrada:
+3 20 21 22
+20 21
+20 22
+22 22
+22 20
+
+A quantidade de elementos no conjunto é representado pelo primeiro número na primeira linha.
+Os números subsequêntes, ainda na primeira linha, são os "nomes" de cada elemento. Devem ser consecutivos.
+A segunda linha em diante representa uma relação de um elemento com outro.
+
+Passo a passo para execução (teste realizado no mac):
+1. Adicionar a entrada no arquivo: entrada.txt
+2. Compilar: gcc relacao.c -o relacao
+3. Executar: ./relacao

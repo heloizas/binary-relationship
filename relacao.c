@@ -49,7 +49,7 @@ int main() {
     FILE *file, *outputFile;
 
     //Entrada e validação
-    file = fopen("relacao.txt","r");
+    file = fopen("entrada.txt","r");
     if (file == NULL) {
         printf("Arquivo não encontrado!\n");
         return 0;
