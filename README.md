@@ -16,6 +16,7 @@ cada elemento. Devem ser consecutivos.
 
 A segunda linha em diante representa uma relação de um elemento com outro.
 
+Exemplo:
 ```C
 3 20 21 22
 20 21
@@ -24,6 +25,7 @@ A segunda linha em diante representa uma relação de um elemento com outro.
 ```
 <b>Saída:</b> A saída será gravada no arquivo: saida.txt.
 
+Exemplo:
 ```C
 Reflexiva: F
 (20,20); (21,21);
