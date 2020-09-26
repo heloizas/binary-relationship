@@ -54,17 +54,19 @@ Para cada propriedade, foi analisado o seguinte:
 * <b>Fecho transitivo da relação:</b> Se a matriz for transitiva, ela é seu próprio fecho transitivo direto. Se não for transitiva, a matriz juntamente com os itens que faltaram para ser transitiva será o fecho direto.
 
 <b>Complexidade:</b> A parte principal do programa é retornar se as propriedades abaixo são válidas ou não. Caso não, retornar os pares ordenados necessários para que seja válida. Logo, a complexidade das partes principais do código são as seguintes:
-* <b>Reflexiva:</b> Pendente
-* <b>Irreflexiva:</b> Pendente
-* <b>Simétrica:</b> Pendente
-* <b>Anti-simétrica:</b> Pendente
-* <b>Assimétrica:</b> Pendente
-* <b>Transitiva:</b> Pendente
-* <b>Relação de equivalência:</b> Pendente
-* <b>Relação de ordem parcial:</b>  Pendente
-* <b>Fecho transitivo da relação:</b> Pendente
+* <b>Reflexiva:</b> Apenas um loop, com duração dependendo exclusivamente da entrada n, logo a complexidade de tempo para o pior caso é O(n).
+* <b>Irreflexiva:</b> Apenas um loop, com duração dependendo exclusivamente da entrada n, logo a complexidade de tempo para o pior caso é O(n).
+* <b>Simétrica:</b> Dois loops aninhados, cuja duração se baseia na entrada, possuindo duração O(n²).
+* <b>Anti-simétrica:</b> Dois loops aninhados, cuja duração se baseia na entrada, possuindo duração O(n²).
+* <b>Assimétrica:</b> Apenas um condicional.
+* <b>Transitiva:</b> Três loops aninhados, cuja duração se baseia na entrada, possuindo duração O(n³).
+* <b>Relação de equivalência:</b> Apenas um condicional.
+* <b>Relação de ordem parcial:</b>  Apenas um condicional.
+* <b>Fecho transitivo da relação:</b> Dois loops aninhados, cuja duração se baseia na entrada, possuindo duração O(n²).
 
-<b>Análise geral:</b> Pendente
+<b>Análise geral da complexidade:</b> O algoritmo contém no máximo três loops aninhados, cuja duração se baseia na entrada, possuindo duração O(n³). O algoritmo utiliza memória baseada numa matriz de adjacência quadrada de n lados, possuindo complexidade de espaço de O(n²).
+
+
 
 <b>Execução:</b>
 ```bash
