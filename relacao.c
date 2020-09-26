@@ -54,32 +54,28 @@ int main() {
         printf("Arquivo não encontrado!\n");
         return 0;
     }
-
     //Pega o tamanho e o nome da matriz
     fscanf(file, "%d %d", &matrixSize, &matrixName);
-
     //Pega o valor do último nome
     maxName = matrixName+matrixSize-1;
-
     //Pois o vetor começa na posição 0. Sem acrescentar o 1, as últimas relações não apareceria
     maxName = maxName + 1;
-
     //Preenchimento da matriz
 	n=maxName; m=maxName;
 
+    //Preenchimento da matriz
     while(fgets(linha, 100, file) != NULL) {
         fscanf(file, "%i %i", &first, &second);
         Matrix[first][second] = 1;
     }
 
-	// printMatrix(M, n, m, matrixName);
     outputFile = fopen("saida.txt", "w");
 
     //REFLEXIVA
     Tuple faltaReflexiva[n];
     int faltaReflexivaContagem = 0;
     for(i=matrixName; i<n; i++) {
-        if(Matrix[i][i] == 1) {
+        if(Matrix[i][i]) {
             contadorref += 1;
         }
         else {
@@ -98,7 +94,7 @@ int main() {
     Tuple faltaIrreflexiva[n];
     int faltaIrreflexivaContagem = 0;
     for(i=matrixName; i<n; i++) {
-        if(Matrix[i][i] == 0) {
+        if(!Matrix[i][i]) {
             contadorirref += 1;
         }
         else {
@@ -121,7 +117,7 @@ int main() {
 			if(Matrix[i][j] == Matrix[j][i]) {
                 contadorsimetrica += 1;
             }
-            else if((Matrix[j][i] == 1) && (Matrix[i][j] == 0)) {
+            else if((Matrix[j][i]) && (!Matrix[i][j])) {
                 faltaSimetrica[faltaSimetricaContagem].x = i;
                 faltaSimetrica[faltaSimetricaContagem].y = j;
                 faltaSimetricaContagem++;
@@ -140,7 +136,7 @@ int main() {
     for(i=matrixName; i<n; i++) {
 		for(j=matrixName; j<m; j++) {
 			if(Matrix[i][j] == Matrix[j][i]) {
-                if ((i!=j) && (Matrix[i][j] == 1)){
+                if ((i!=j) && (Matrix[i][j])){
                     antisimetrica = 'F';
                     faltaAntiSimetrica[faltaAntiSimetricaContagem].x = i;
                     faltaAntiSimetrica[faltaAntiSimetricaContagem].y = j;
@@ -202,7 +198,7 @@ int main() {
     int fechoTransitivoContagem = 0;
     for(i=matrixName; i<n; i++) {
 		for(j=matrixName; j<m; j++) {
-			if(Matrix[i][j] == 1){
+			if(Matrix[i][j]){
                 fechoTransitivo[fechoTransitivoContagem].x = i;
                 fechoTransitivo[fechoTransitivoContagem].y = j;
                 fechoTransitivoContagem++;
