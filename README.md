@@ -17,18 +17,14 @@ cada elemento. Devem ser consecutivos.
 A segunda linha em diante representa uma relação de um elemento com outro.
 
 ```C
-Entrada:
-
 3 20 21 22
 20 21
 20 22
 22 22
 ```
-<b>Saída:</b> A saída será gravada no arquivo: saida.txt 
+<b>Saída:</b> A saída será gravada no arquivo: saida.txt.
 
 ```C
-Saída:
-
 Reflexiva: F
 (20,20); (21,21);
 Irreflexiva: F
@@ -47,26 +43,26 @@ Fecho transitivo da relação: (20,21); (20,22); (22,22);
 * Cria-se uma matriz de adjacência, onde o eixo das linhas representa o ponto de origem da relação, e o eixo das colunas representa o ponto de destino da relação.
 
 Para cada propriedade, foi analisado o seguinte:
-* Reflexiva: Se toda a diagonal principal da matriz tiver relações, é reflexiva.
-* Irreflexiva: Se toda a diagonal principal da matriz não tiver relações, é irreflexiva.
-* Simétrica: Se Matriz[i][j] = Matriz[j][i], é simétrica.
-* Anti-simétrica: Se Matriz[i][j] != Matriz[j][i], a menos que i=j, é anti-simétrica.
-* Assimétrica: É assimétrica se for irreflexiva e se for anti-simétrica.
-* Transitiva: Se Matriz[i][j] = 1 e Matriz[j][z] = 1 e Matriz[i][z] = 1, é transitiva.
-* Relação de equivalência: Se a matriz de adjecência for reflexiva, simétrica e transitiva simultaneamente, é relação de equivalência.
-* Relação de ordem parcial: Se a matriz de adjecência for reflexiva e transitiva simultaneamente, mas não for anti-simétrica, é relação de ordem parcial.
-* Fecho transitivo da relação: Se a matriz for transitiva, ela é seu próprio fecho transitivo direto. Se não for transitiva, a matriz juntamente com os itens que faltaram para ser transitiva será o fecho direto.
+* <b>Reflexiva:</b> Se toda a diagonal principal da matriz tiver relações, é reflexiva.
+* <b>Irreflexiva:</b> Se toda a diagonal principal da matriz não tiver relações, é irreflexiva.
+* <b>Simétrica:</b> Se Matriz[i][j] = Matriz[j][i], então é simétrica.
+* <b>Anti-simétrica:</b> Se Matriz[i][j] != Matriz[j][i], a menos que i=j, é anti-simétrica.
+* <b>Assimétrica:</b> É assimétrica se for irreflexiva e se for anti-simétrica.
+* <b>Transitiva:</b> Se Matriz[i][j] = 1 e Matriz[j][z] = 1 e Matriz[i][z] = 1, então é transitiva.
+* <b>Relação de equivalência:</b> Se a matriz de adjecência for reflexiva, simétrica e transitiva simultaneamente, é relação de equivalência.
+* <b>Relação de ordem parcial:</b> Se a matriz de adjecência for reflexiva e transitiva simultaneamente, mas não for anti-simétrica, é relação de ordem parcial.
+* <b>Fecho transitivo da relação:</b> Se a matriz for transitiva, ela é seu próprio fecho transitivo direto. Se não for transitiva, a matriz juntamente com os itens que faltaram para ser transitiva será o fecho direto.
 
-<b>Complexidade:</b> O mais importante do programa é retornar se as propriedades abaixo são válidas ou não. Caso não, retornar os pares ordenados necessários para que seja válida. Logo, a complexidade das funções importantes são as seguintes:
-* Reflexiva: Pendente
-* Irreflexiva: Pendente
-* Simétrica: Pendente
-* Anti-simétrica: Pendente
-* Assimétrica: Pendente
-* Transitiva Pendente
-* Relação de equivalência: Pendente
-* Relação de ordem parcial:  Pendente
-* Fecho transitivo da relação: Pendente
+<b>Complexidade:</b> A parte principal do programa é retornar se as propriedades abaixo são válidas ou não. Caso não, retornar os pares ordenados necessários para que seja válida. Logo, a complexidade das partes principais do código são as seguintes:
+* <b>Reflexiva:</b> Pendente
+* <b>Irreflexiva:</b> Pendente
+* <b>Simétrica:</b> Pendente
+* <b>Anti-simétrica:</b> Pendente
+* <b>Assimétrica:</b> Pendente
+* <b>Transitiva:</b> Pendente
+* <b>Relação de equivalência:</b> Pendente
+* <b>Relação de ordem parcial:</b>  Pendente
+* <b>Fecho transitivo da relação:</b> Pendente
 
 <b>Análise geral:</b> Pendente
 
