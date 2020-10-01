@@ -5,6 +5,8 @@
 typedef struct {
     int x;
     int y;
+    int xfecho;
+    int yfecho;
 } Tuple;
 
 void printMatrix(int Matrix[][MAXTAM], int n, int m, int matrixName) {
@@ -197,8 +199,8 @@ int main() {
     for(i=matrixName; i<n; i++) {
 		for(j=matrixName; j<m; j++) {
 			if(Matrix[i][j]){
-                fechoTransitivo[fechoTransitivoContagem].x = i;
-                fechoTransitivo[fechoTransitivoContagem].y = j;
+                fechoTransitivo[fechoTransitivoContagem].xfecho = i;
+                fechoTransitivo[fechoTransitivoContagem].yfecho = j;
                 fechoTransitivoContagem++;
             }
 		}
@@ -219,7 +221,7 @@ int main() {
     printf("Relação de ordem parcial: %c", relacaoordempacial);
     printf("\nFecho transitivo da relação: ");
     for (int i = 0; i < fechoTransitivoContagem; i++){
-        printf("(%d,%d); ", fechoTransitivo[i].x, fechoTransitivo[i].y);
+        printf("(%d,%d); ", fechoTransitivo[i].xfecho, fechoTransitivo[i].yfecho);
     }
     for (int i = 0; i < faltaTransitivaSemDuplicidadeContagem; i++){
         printf("(%d,%d); ", faltaTransitivaSemDuplicidade[i].x, faltaTransitivaSemDuplicidade[i].y);
