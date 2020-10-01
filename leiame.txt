@@ -20,4 +20,4 @@ Passo a passo para execução (teste realizado no mac):
 1. Adicionar a entrada no arquivo: entrada.txt
 2. Compilar: gcc relacao.c -o relacao
 3. Executar: ./relacao
-4. Resultado será gravado no arquivo: saida.txt 
+4. Resultado será exibido no terminal

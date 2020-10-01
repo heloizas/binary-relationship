@@ -1,0 +1,9 @@
+Reflexiva: V
+Irreflexiva: V
+Simétrica: V
+Anti-simétrica: V
+Assimétrica: V
+Transitiva: V
+Relação de equivalência: V
+Relação de ordem parcial: V
+Fecho transitivo da relação: 

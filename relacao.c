@@ -20,15 +20,15 @@ void printMatrix(int Matrix[][MAXTAM], int n, int m, int matrixName) {
     printf("\n");
 }
 
-void writeFile(FILE *outputFile, char check, int count, Tuple values[], char text[]) {
-    fprintf(outputFile, "%s: %c", text, check);
+void writeFile(char check, int count, Tuple values[], char text[]) {
+    printf("%s: %c", text, check);
     if (check == 'F'){
-        fprintf(outputFile, "\n");
+        printf("\n");
     }
     for (int i=0; i<count; i++){
-        fprintf(outputFile, "(%d,%d); ", values[i].x, values[i].y);
+        printf("(%d,%d); ", values[i].x, values[i].y);
     }
-    fprintf(outputFile, "\n");
+    printf("\n");
 }
 
 int main() {
@@ -46,7 +46,7 @@ int main() {
     char relacaoequivalencia = 'F';
     char relacaoordempacial = 'F';
 
-    FILE *file, *outputFile;
+    FILE *file;
 
     //Entrada e validação
     file = fopen("entrada.txt","r");
@@ -69,8 +69,6 @@ int main() {
         Matrix[first][second] = 1;
     }
 
-    outputFile = fopen("saida.txt", "w");
-
     //REFLEXIVA
     Tuple faltaReflexiva[n];
     int faltaReflexivaContagem = 0;
@@ -88,7 +86,7 @@ int main() {
         reflexiva = 'V';
     }
 
-    writeFile(outputFile, reflexiva, faltaReflexivaContagem, faltaReflexiva, "Reflexiva");
+    writeFile(reflexiva, faltaReflexivaContagem, faltaReflexiva, "Reflexiva");
 
     //IRREFLEXIVA
     Tuple faltaIrreflexiva[n];
@@ -107,7 +105,7 @@ int main() {
         irreflexiva = 'V';
     }
 
-    writeFile(outputFile, irreflexiva, faltaIrreflexivaContagem, faltaIrreflexiva, "Irreflexiva");
+    writeFile(irreflexiva, faltaIrreflexivaContagem, faltaIrreflexiva, "Irreflexiva");
 
     //SIMÉTRICA
     Tuple faltaSimetrica[n];
@@ -128,7 +126,7 @@ int main() {
         simetrica = 'V';
     }
 
-    writeFile(outputFile, simetrica, faltaSimetricaContagem, faltaSimetrica, "Simétrica");
+    writeFile(simetrica, faltaSimetricaContagem, faltaSimetrica, "Simétrica");
 
     //ANTI-SIMÉTRICA
     Tuple faltaAntiSimetrica[n];
@@ -146,7 +144,7 @@ int main() {
 		}
 	}
     
-    writeFile(outputFile, antisimetrica, faltaAntiSimetricaContagem, faltaAntiSimetrica, "Anti-simétrica");
+    writeFile(antisimetrica, faltaAntiSimetricaContagem, faltaAntiSimetrica, "Anti-simétrica");
 
     //ASSIMÉTRICA
     //É assimétrica se for irreflexiva e anti-simétrica
@@ -154,7 +152,7 @@ int main() {
         assimetrica = 'V';
     }
 
-    fprintf(outputFile, "Assimétrica: %c\n", assimetrica);
+    printf("Assimétrica: %c\n", assimetrica);
 
     //TRANSITIVA
     Tuple faltaTransitiva[n];
@@ -191,7 +189,7 @@ int main() {
         insere = 1;
     }
 
-    writeFile(outputFile, transitiva, faltaTransitivaSemDuplicidadeContagem, faltaTransitivaSemDuplicidade, "Transitiva");
+    writeFile(transitiva, faltaTransitivaSemDuplicidadeContagem, faltaTransitivaSemDuplicidade, "Transitiva");
 
     //FECHO TRANSITIVO
     Tuple fechoTransitivo[n];
@@ -217,16 +215,16 @@ int main() {
     }
 
     //Saída
-    fprintf(outputFile, "Relação de equivalência: %c\n", relacaoequivalencia);
-    fprintf(outputFile, "Relação de ordem parcial: %c", relacaoordempacial);
-    fprintf(outputFile, "\nFecho transitivo da relação: ");
+    printf("Relação de equivalência: %c\n", relacaoequivalencia);
+    printf("Relação de ordem parcial: %c", relacaoordempacial);
+    printf("\nFecho transitivo da relação: ");
     for (int i = 0; i < fechoTransitivoContagem; i++){
-        fprintf(outputFile, "(%d,%d); ", fechoTransitivo[i].x, fechoTransitivo[i].y);
+        printf("(%d,%d); ", fechoTransitivo[i].x, fechoTransitivo[i].y);
     }
     for (int i = 0; i < faltaTransitivaSemDuplicidadeContagem; i++){
-        fprintf(outputFile, "(%d,%d); ", faltaTransitivaSemDuplicidade[i].x, faltaTransitivaSemDuplicidade[i].y);
+        printf("(%d,%d); ", faltaTransitivaSemDuplicidade[i].x, faltaTransitivaSemDuplicidade[i].y);
     }
-    fclose(outputFile);
+    printf("\n");
     fclose(file);
     return 0;
 }

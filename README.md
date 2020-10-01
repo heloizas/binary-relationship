@@ -23,7 +23,7 @@ Exemplo:
 20 22
 22 22
 ```
-<b>Saída:</b> A saída será gravada no arquivo: saida.txt.
+<b>Saída:</b> A saída será exibida no próprio terminal:
 
 Exemplo:
 ```C
@@ -75,5 +75,5 @@ Para cada propriedade, foi analisado o seguinte:
 1. Adicionar a entrada no arquivo: entrada.txt
 2. Compilar: gcc relacao.c -o relacao
 3. Executar: ./relacao
-4. Resultado será gravado no arquivo: saida.txt 
+4. Resultado será exibido no terminal
 ```
