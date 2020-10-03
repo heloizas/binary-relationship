@@ -60,10 +60,10 @@ Para cada propriedade, foi analisado o seguinte:
 * <b>Irreflexiva:</b> Apenas um loop, com duração dependendo exclusivamente da entrada n, logo a complexidade de tempo para o pior caso é O(n).
 * <b>Simétrica:</b> Dois loops aninhados, cuja duração se baseia na entrada, possuindo duração O(n²).
 * <b>Anti-simétrica:</b> Dois loops aninhados, cuja duração se baseia na entrada, possuindo duração O(n²).
-* <b>Assimétrica:</b> Apenas um condicional.
+* <b>Assimétrica:</b> Apenas um condicional, O(1) por ser constante.
 * <b>Transitiva:</b> Três loops aninhados, cuja duração se baseia na entrada, possuindo duração O(n³).
-* <b>Relação de equivalência:</b> Apenas um condicional.
-* <b>Relação de ordem parcial:</b>  Apenas um condicional.
+* <b>Relação de equivalência:</b> Apenas um condicional, O(1) por ser constante.
+* <b>Relação de ordem parcial:</b>  Apenas um condicional, O(1) por ser constante.
 * <b>Fecho transitivo da relação:</b> Dois loops aninhados, cuja duração se baseia na entrada, possuindo duração O(n²).
 
 <b>Análise geral da complexidade:</b> O algoritmo contém no máximo três loops aninhados, cuja duração se baseia na entrada, possuindo duração O(n³). O algoritmo utiliza memória baseada numa matriz de adjacência quadrada de n lados, possuindo complexidade de espaço de O(n²).
